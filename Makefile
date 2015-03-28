@@ -1,10 +1,9 @@
-#Chris Lucian & Chad Davies
-#3/8/2015
-#CS 537
-#Programming Assignment 1 Web Server
 
-#build server, client, and tests. Excludes the clear_ls_make. This occurs whenever just "make" is called
-all: server client tests
+all: librdt server client tests
+
+librdt: rdt.cpp
+	gcc -lstdc++ -fPIC -c -o librdt rdt.cpp
+	ar rcs librdt.a librdt
 
 #build the server
 server: server.cpp WebServer.cpp WebClient.cpp

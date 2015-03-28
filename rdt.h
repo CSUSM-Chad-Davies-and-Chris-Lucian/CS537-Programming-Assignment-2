@@ -1,5 +1,10 @@
 #include <stdio.h>
-
+#include <stdint.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <string.h> //memset
+#include <stdlib.h> //exit(0);
+#include <arpa/inet.h>
 
 struct packet {
   uint16_t cksum; /* Ack and Data */

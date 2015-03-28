@@ -7,11 +7,11 @@ librdt: rdt.cpp
 
 #build the server
 server: server.cpp WebServer.cpp WebClient.cpp
-	gcc -lstdc++ -o server server.cpp WebServer.cpp WebClient.cpp -pthread
+	gcc -lstdc++ -o server server.cpp WebServer.cpp WebClient.cpp -pthread librdt.a
 
 #build the client
 client: client.cpp WebServer.cpp WebClient.cpp
-	gcc -lstdc++ -o client client.cpp WebServer.cpp WebClient.cpp -pthread -lrt -lpthread
+	gcc -lstdc++ -o client client.cpp WebServer.cpp WebClient.cpp -pthread -lrt -lpthread librdt.a
 
 #build tests
 tests: tests.cpp

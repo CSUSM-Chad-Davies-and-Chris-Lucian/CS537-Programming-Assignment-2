@@ -26,11 +26,11 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
 
-    int bufferLength = 512;
+    int bufferLength = 1050;
+    // int bufferLength = 36;
     struct sockaddr_in serverAddress, clientAddress;
     int sizeClientAddress = sizeof(clientAddress);
     char buffer[bufferLength];
-    char message[bufferLength];
 
     // Validate the correct number of arguments have been passed to the server
     if (argc < 2) {
@@ -50,6 +50,9 @@ int main(int argc, char *argv[]) {
     rdt_bind(socketDescriptor, (struct sockaddr*)&serverAddress, sizeof(clientAddress));
     printf("SERVER beforerecieve\n");
     rdt_recv(socketDescriptor, buffer, bufferLength, 0, (struct sockaddr *) &clientAddress, &sizeClientAddress);
+    printf("SERVER Recieved %s\n" , buffer );
+
     printf("SERVER afterrecieve\n");
+
     return 0;
 }

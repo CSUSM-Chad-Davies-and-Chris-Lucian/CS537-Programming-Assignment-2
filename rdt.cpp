@@ -23,11 +23,14 @@ int rdt_bind(int socket_descriptor,const struct sockaddr *local_address,socklen_
 
 int get_num_packets(int buffer_length)
 {
+  printf("Get Packets Buffer Length %d\n", buffer_length);
+
   int num_packets = buffer_length / PACKET_DATA_SIZE;
   if(buffer_length % PACKET_DATA_SIZE != 0)
   {
     num_packets++;
   }
+  printf("RDT Num Packets %d\n", num_packets);
   return num_packets;
 }
 
@@ -43,27 +46,35 @@ int rdt_recv(int socket_descriptor,char *buffer, int buffer_length, int flags, s
     for(int i = 0; i < num_packets; i++)
     {
       char local_buffer[PACKET_SIZE];
-      int recieveLength = recvfrom(socket_descriptor, local_buffer, PACKET_SIZE, flags, from_address, (socklen_t*)address_length);
+      int recieveLength = recvfrom(socket_descriptor, &local_buffer, PACKET_SIZE, flags, from_address, (socklen_t*)address_length);
+      printf("RDT Recieved Length %d\n",recieveLength);
       if (recieveLength == -1)
       {
         printf("RDT Reieved Failed.\n");
         return recieveLength;
       }
 
+
       memcpy(&packets[i], local_buffer, PACKET_SIZE);
 
-      //transfer the packet data into the buffer
+      // printf("RDT Recieved Packed Data %s\n\n\n", packets[i].data);
+
+    }
+
+    //transfer the packet data into the buffer
+    for(int i = 0; i < num_packets; i++)
+    {
       for(int d = 0; d < PACKET_DATA_SIZE; d++)
       {
         int data_index = i * PACKET_DATA_SIZE + d;
-        if(data_index > buffer_length)
+        if(data_index < buffer_length)
         {
-          buffer[data_index];
+          buffer[data_index] = packets[i].data[d];
         }
       }
     }
-
-  printf("RDT Recieve %d\n" , sizeof(struct packet));
+    buffer[buffer_length] = '\0';
+    //  printf("RDT Recieved Message %s\n\n\n", buffer);
 
   return buffer_length;
 }
@@ -82,9 +93,13 @@ int rdt_sendto(int socket_descriptor,char *buffer,int buffer_length,int flags,st
     for(int d = 0; d < PACKET_DATA_SIZE; d++)
     {
       int data_index = i * PACKET_DATA_SIZE + d;
-      if(data_index > buffer_length)
+      if(data_index < buffer_length)
       {
         packets[i].data[d] = buffer[data_index];
+      }
+      else
+      {
+        packets[i].data[d] = '\0';
       }
     }
   }
@@ -93,8 +108,7 @@ int rdt_sendto(int socket_descriptor,char *buffer,int buffer_length,int flags,st
   for(int i = 0; i < num_packets; i++)
   {
     int errno;
-    int sendToSuccess = sendto(socket_descriptor, (void *)packets[i].data, PACKET_DATA_SIZE, flags, destination_address, address_length);
-    printf("RDT sendto: %d, %i\n", sendToSuccess, errno);
+    int sendToSuccess = sendto(socket_descriptor, &packets[i], PACKET_SIZE, flags, destination_address, address_length);
     if (sendToSuccess == -1)
     {
         printf("RDT Couldn't be sent.\n");

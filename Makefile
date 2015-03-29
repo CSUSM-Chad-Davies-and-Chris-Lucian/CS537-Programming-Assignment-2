@@ -1,5 +1,12 @@
 
-all: librdt server client tests
+all: clean librdt server client tests
+
+clean:
+	-rm librdt
+	-rm librdt.a
+	-rm server
+	-rm client
+	-rm tests
 
 librdt: rdt.cpp
 	gcc -lstdc++ -fPIC -c -o librdt rdt.cpp

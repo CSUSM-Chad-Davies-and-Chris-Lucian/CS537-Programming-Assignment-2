@@ -40,12 +40,12 @@ int main(int argc, char *argv[]) {
 
     serverAddress.sin_addr.s_addr = htonl(INADDR_LOOPBACK);
 
-    printf("client beforesocket\n");
+    printf("CLIENT beforesocket\n");
     int socketDescriptor = rdt_socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-    printf("client beforesend\n");
+    printf("CLIENT beforesend\n");
     int serverAddressLength = sizeof(serverAddress);
     rdt_sendto(socketDescriptor, message, strlen(message), 0,(struct sockaddr *) &serverAddress, serverAddressLength);
-    printf("client done\n");
+    printf("CLIENT sendto done\n");
 
     return 0;
 }

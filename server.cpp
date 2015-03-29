@@ -44,15 +44,12 @@ int main(int argc, char *argv[]) {
     serverAddress.sin_port = htons(port);
     serverAddress.sin_addr.s_addr = htonl(INADDR_ANY);
 
-    printf("beforesocket\n");
+    printf("SERVER beforesocket\n");
     int socketDescriptor = rdt_socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
-    printf("beforebindsocket\n");
+    printf("SERVER beforebindsocket\n");
     rdt_bind(socketDescriptor, (struct sockaddr*)&serverAddress, sizeof(clientAddress));
-    printf("beforerecieve\n");
+    printf("SERVER beforerecieve\n");
     rdt_recv(socketDescriptor, buffer, bufferLength, 0, (struct sockaddr *) &clientAddress, &sizeClientAddress);
-    //printf("beforesendto\n");
-    //rdt_sendto(socketDescriptor, message, strlen(message), 0, clientAddress, sizeClientAddress);
-    printf("end\n");
-
+    printf("SERVER afterrecieve\n");
     return 0;
 }

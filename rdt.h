@@ -6,12 +6,15 @@
 #include <stdlib.h> //exit(0);
 #include <arpa/inet.h>
 
+
+const int PACKET_DATA_SIZE = 500;
+const int PACKET_SIZE = 512;
 struct packet {
   uint16_t cksum; /* Ack and Data */
   uint16_t len; /* Ack and Data */
   uint32_t ackno; /* Ack and Data */
   uint32_t seqno; /* Data only */
-  char data[500]; /* Data only; Not always 500 bytes, can be less */
+  char data[PACKET_DATA_SIZE]; /* Data only; Not always 500 bytes, can be less */
 };
 typedef struct packet packet_t;
 
@@ -25,7 +28,6 @@ int rdt_bind(int socket_descriptor,const struct sockaddr *local_address,socklen_
 int rdt_recv(int socket_descriptor,char *buffer, int buffer_length, int flags, struct sockaddr *from_address, int *address_length);
 
 //The rdt_send() function is used to send data through a connected or unconnected socket
-
 int rdt_sendto(int socket_descriptor,char *buffer,int buffer_length,int flags,struct sockaddr *destination_address,int address_length);
 
 //The rdt_close() function closes a descriptor, fildes

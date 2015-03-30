@@ -1,7 +1,7 @@
-//Chris Lucian & Chad Davies
-//3/8/2015
-//CS 537
-//Programming Assignment 1 Web Server
+// Names: Chris Lucian && Chad Davies
+// Class: CS 537
+// Date: 3/29/2015
+// Assignment: 2
 
 #include <cstdlib>
 #include <stdio.h>

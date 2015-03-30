@@ -1,3 +1,9 @@
+// Names: Chris Lucian && Chad Davies
+// Class: CS 537
+// Date: 3/29/2015
+// Assignment: 2
+
+// Guard against linking errors.
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -8,10 +14,14 @@ extern "C" {
 #include <string.h> //memset
 #include <stdlib.h> //exit(0);
 #include <arpa/inet.h>
+#include <unistd.h>
 
-
+// Size of the data inside a packet.
 const int PACKET_DATA_SIZE = 500;
+// Size of a packet.
 const int PACKET_SIZE = 512;
+
+// Common struct used to define a packet.
 struct packet {
   uint16_t cksum; /* Ack and Data */
   uint16_t len; /* Ack and Data */
@@ -34,7 +44,7 @@ int rdt_recv(int socket_descriptor,char *buffer, int buffer_length, int flags, s
 int rdt_sendto(int socket_descriptor,char *buffer,int buffer_length,int flags,struct sockaddr *destination_address,int address_length);
 
 //The rdt_close() function closes a descriptor, fildes
-int close(int fildes);
+int rdt_close(int fildes);
 #ifdef __cplusplus
 }
 #endif

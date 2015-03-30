@@ -1,6 +1,11 @@
+# Names: Chris Lucian && Chad Davies
+# Class: CS 537
+# Date: 3/29/2015
+# Assignment: 2
 
 all: clean librdt server client tests
 
+# Delete all files to force re-linking.
 clean:
 	-rm librdt
 	-rm librdt.a
@@ -8,6 +13,7 @@ clean:
 	-rm client
 	-rm tests
 
+# build and archive RDT library.
 librdt: rdt.cpp
 	gcc -lstdc++ -fPIC -c -o librdt rdt.cpp
 	ar rcs librdt.a librdt

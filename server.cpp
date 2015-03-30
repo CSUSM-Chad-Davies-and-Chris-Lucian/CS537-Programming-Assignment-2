@@ -5,22 +5,20 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include "WebServer.h"
-#include "WebClient.h"
+//#include <sys/socket.h>
+//#include <arpa/inet.h>
 #include "rdt.h"
-#include <pthread.h>
+///#include <pthread.h>
 #include <string>
 #include <iostream>
 #include <fstream>
-#include <boost/regex.hpp>
-#include <boost/algorithm/string/regex.hpp>
-#include <boost/algorithm/string.hpp>
-#include <streambuf>
-#include <vector>
-#include <boost/lexical_cast.hpp>
-#include <time.h>
+//#include <boost/regex.hpp>
+//#include <boost/algorithm/string/regex.hpp>
+//#include <boost/algorithm/string.hpp>
+//#include <streambuf>
+//#include <vector>
+//#include <boost/lexical_cast.hpp>
+//#include <time.h>
 
 using namespace std;
 

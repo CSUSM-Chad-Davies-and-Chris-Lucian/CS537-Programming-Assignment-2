@@ -1,3 +1,6 @@
+#ifdef __cplusplus
+extern "C" {
+#endif
 #include <stdio.h>
 #include <stdint.h>
 #include <sys/types.h>
@@ -32,3 +35,6 @@ int rdt_sendto(int socket_descriptor,char *buffer,int buffer_length,int flags,st
 
 //The rdt_close() function closes a descriptor, fildes
 int close(int fildes);
+#ifdef __cplusplus
+}
+#endif

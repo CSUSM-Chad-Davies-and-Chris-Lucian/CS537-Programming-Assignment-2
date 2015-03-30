@@ -13,12 +13,12 @@ librdt: rdt.cpp
 	ar rcs librdt.a librdt
 
 #build the server
-server: server.cpp WebServer.cpp WebClient.cpp
-	gcc -lstdc++ -o server server.cpp WebServer.cpp WebClient.cpp -pthread librdt.a -I/
+server: server.cpp
+	gcc -lstdc++ -o server server.cpp -pthread librdt.a -I/
 
 #build the client
-client: client.cpp WebServer.cpp WebClient.cpp
-	gcc -lstdc++ -o client client.cpp WebServer.cpp WebClient.cpp -pthread -lrt -lpthread librdt.a -I/
+client: client.cpp
+	gcc -lstdc++ -o client client.cpp -pthread -lrt -lpthread librdt.a -I/
 
 #build tests
 tests: tests.cpp

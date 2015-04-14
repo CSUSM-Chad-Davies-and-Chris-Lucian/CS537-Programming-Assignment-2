@@ -15,7 +15,7 @@ clean:
 
 # build and archive RDT library.
 librdt: rdt.cpp
-	gcc -lstdc++ -fPIC -shared -c -o librdt rdt.cpp
+	gcc -lstdc++ -fPIC -c -o librdt rdt.cpp
 	ar rcs librdt.a librdt
 
 #build the server
